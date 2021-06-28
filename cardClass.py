@@ -1,4 +1,5 @@
 from random import randint
+
 # Count, Fill, Color, and Shape will all have integer values representing the value. The following is a key for conversion
 No_Fill = 1
 Hash = 2
@@ -9,6 +10,7 @@ Pill = 3
 Red = 1
 Green = 2
 Purple = 3
+
 back_conversion = {
     "color": {
         1: "Red",
@@ -38,5 +40,6 @@ class Card:
         self.position = positionInput
         self.cameraInfo = cameraInfoInput
 
+    @staticmethod
     def getRandomCard():
         return Card(randint(1, 3), randint(1, 3), randint(1, 3), randint(1, 3))
