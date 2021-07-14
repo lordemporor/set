@@ -40,7 +40,10 @@ class Game:
                 neededCardC = findNeededCard(self.allCards[cardAIndex], self.allCards[cardBIndex])
                 foundNeededCardC = tellMeWhereCardIs(neededCardC)
                 if foundNeededCardC:
-                    return self.allCards[cardAIndex], self.allCards[cardBIndex], foundNeededCardC
+                    if Game.isCardIdentical(self.allCards[cardAIndex], self.allCards[cardBIndex]):
+                        return False
+                    else:
+                        return self.allCards[cardAIndex], self.allCards[cardBIndex], foundNeededCardC
         return None
 
     # addCards function: sticks the entered cards into allCards. if a card is already in that position, delete it
@@ -73,6 +76,11 @@ class Game:
     # getCards function: returns allCards
     def getCards(self):
         return self.allCards
+
+    # isCardIdentical: tells if the values of 2 cards are the same
+    @staticmethod
+    def isCardIdentical(firstCard, secondCard):
+        return firstCard.count == secondCard.count and firstCard.color == secondCard.color and firstCard.shape == secondCard.shape and firstCard.fill == secondCard.fill
 
     # fitCards function: re-organizes the positions of cards in allCards. if cards are entered,
     # it will try to fit them into their position. if somethings already there, the new card goes to the closest available position to 0
