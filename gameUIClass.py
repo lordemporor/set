@@ -41,6 +41,7 @@ class GameUI:
         self.game = game
         self.gameState = GAME_STATE_RUNNING
         self.lastRenderTick = 0
+        self.tmpCards = []
         return
 
     def init(self):
@@ -48,6 +49,8 @@ class GameUI:
         pygame.init()
 
         self.screen = pygame.display.set_mode([SCREEN_WIDTH, SCREEN_HEIGHT])
+        pygame.display.set_caption("Set")
+
         self.gameState = GAME_STATE_RUNNING
 
         # main loop
@@ -67,8 +70,12 @@ class GameUI:
         # clear screen
         self.screen.fill(BG_COLOR)
 
+        #self.updateCardUIList()
+
         # pygame.draw.rect(self.screen, CARD_COLOR, pygame.Rect(30, 30, CARD_HEIGHT, CARD_WIDTH), border_radius=CARD_BORDER_RADIUS)
         self.drawCardLayout()
+
+        self.drawTmpCards()
 
         pygame.display.flip()
 
@@ -88,6 +95,9 @@ class GameUI:
 
             cardDrawable = CardUI(self, card, cardX, cardY)
             cardDrawable.render()
+
+    def drawTmpCards(self):
+        pass
 
 
     def drawCardOfTypeAt(self, cardType, pos):
